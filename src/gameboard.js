@@ -4,6 +4,7 @@ import {ship} from './ship'
 function gameboard(){
     let ships = [];
     let misses = [];
+    let hits = [];
 
 
     const placeShip = function(arr){
@@ -23,6 +24,7 @@ function gameboard(){
         for(let i in ships){
             if(ships[i].shipCoords().indexOf(coords)>-1){
                 ships[i].hit(coords);
+                hits.push(coords);
                 return;
             }
         }
@@ -30,7 +32,7 @@ function gameboard(){
     }
 
 
-    return {placeShip,checkWin,receiveAttack,misses};
+    return {placeShip,checkWin,receiveAttack,misses,hits};
     
 }
 
