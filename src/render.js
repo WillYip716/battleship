@@ -1,6 +1,11 @@
 import {player1,compPlayer,compBoard,playerBoard} from './battleship'
 
 function render(){
+    let gameScreen = document.getElementsByTagName("body")[0];
+    let cNode = gameScreen.cloneNode(false);
+    gameScreen.parentNode.replaceChild(cNode,gameScreen);
+
+    gameScreen = document.getElementsByTagName("body")[0];
     let playerScreen = document.createElement("div");
     playerScreen.classList.add("screen");
     let compScreen = document.createElement("div");
@@ -10,24 +15,44 @@ function render(){
         let pCoordButton = document.createElement("button");
         pCoordButton.id = "pcoord" + i;
         pCoordButton.className = "coords";
-        pCoordButton.onclick = function(){
-            console.log("you have clicked pcoord " + i);
+        if(playerBoard.hits.indexOf(i)>-1){
+            pCoordButton.classList.add("hit");
         }
+        else if(playerBoard.misses.indexOf(i)>-1){
+            pCoordButton.classList.add("miss");
+        }
+        
     
         let cCoordButton = document.createElement("button");
         cCoordButton.id = "pcoord" + i;
         cCoordButton.className = "coords";
-        cCoordButton.onclick = function(){
-            console.log("you have clicked cCoordButton " + i);
+        if(compBoard.hits.indexOf(i)>-1){
+            cCoordButton.classList.add("hit");
+        }
+        else if(compBoard.misses.indexOf(i)>-1){
+            cCoordButton.classList.add("miss");
+        }
+        else{
+            cCoordButton.onclick = function(){
+                player1.attack(i,compBoard);
+                if(compBoard.checkWin()){
+                    alert("You Win");
+                }
+                compPlayer.randomAttack(playerBoard);
+                if(playerBoard.checkWin()){
+                    alert("You Lose");
+                }
+                else{
+                    render();
+                }
+            }
         }
 
         playerScreen.appendChild(pCoordButton);
         compScreen.appendChild(cCoordButton);
-
-
     }
 
-    let gameScreen = document.getElementsByTagName("body")[0];
+    
     gameScreen.appendChild(playerScreen);
     gameScreen.appendChild(compScreen);
 }

@@ -18,4 +18,10 @@ button{
     border: 1px solid black;
 }
 
+.hit{
+    background-color: red;
+}
 
+.miss{
+    background-color: blue;
+}
