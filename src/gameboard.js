@@ -32,7 +32,7 @@ function gameboard(){
     }
 
 
-    return {placeShip,checkWin,receiveAttack,misses,hits};
+    return {placeShip,checkWin,receiveAttack,misses,hits,ships};
     
 }
 

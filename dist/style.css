@@ -25,3 +25,8 @@ button{
 .miss{
     background-color: blue;
 }
+
+.hovership{
+    border: 1px solid green !important;
+    background-color: green;
+}
