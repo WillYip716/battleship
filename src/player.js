@@ -10,7 +10,7 @@ function player(){
 
     const randomAttack = function(gameboard){
         const randomShot = Math.floor(Math.random() * legalShots.length);
-        gameboard.receiveAttack(randomShot);
+        gameboard.receiveAttack(legalShots[randomShot]);
         legalShots.splice(randomShot,1);
     }
 

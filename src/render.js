@@ -36,10 +36,12 @@ function render(){
             cCoordButton.onclick = function(){
                 player1.attack(i,compBoard);
                 if(compBoard.checkWin()){
+                    render();
                     alert("You Win");
                 }
                 compPlayer.randomAttack(playerBoard);
                 if(playerBoard.checkWin()){
+                    render();
                     alert("You Lose");
                 }
                 else{
